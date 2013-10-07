@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Rhospection</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <link href="/public/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="/public/css/font-awesome.min.css" rel="stylesheet">
+        <link href="/public/css/bootstrap-switch.css" rel="stylesheet">
+
+        <script src="/public/api/rhoapi-modules.js"type="text/javascript" charset="utf-8" ></script>
+        <script src="/public/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+        <script src="/public/js/bootstrap.min.js"></script>
+        <script src="/public/js/bootstrap-switch.min.js"></script>
+        <script src="/public/application.js" type="text/javascript"></script>
+        <script src="/public/js/holder.js" type="text/javascript"></script>
+        
+        <!-- execute the application specific javascript files -->
+        <script src="/public/js/rhospection/rhospection.js" type="text/javascript"></script>
+        <script src="/public/js/rhospection/rhospection_models.js" type="text/javascript"></script>
+        <script src="/public/js/rhospection/rhospection_controller.js" type="text/javascript"></script>
+            
+		<style>
+		.image-thumb
+		{
+		  width:64px;
+		  height:64px;
+		}
+		.indicator
+		{
+		  width:10px;
+		  height:64px;
+		}
+		body
+		{ 
+			padding-bottom: 70px; 
+		}
+		#static-nav
+		{
+			padding-left: 10px;
+		}
+		</style>        
+</head>
+
+<body >
+	<div id="static-nav" class="navbar navbar-default navbar-static-top">
+		<img src="/public/images/bg.png"/>Rhospection</a>
+	</div>
+	<ul class="nav nav-tabs">
+		<li style="cursor: pointer" class="pull-right"><a onClick="Rhospection.controllers.Report.create();" class="label label-primary" ><i class="icon-plus-sign  icon-white" ></i>  New</a></li>
+	</ul>
+	<div id="static-nav" class="navbar navbar-default navbar-static-top">
+          <ul class="nav navbar-nav navbar-right" style="cursor: pointer">
+      		<li id="menuReports"><a onClick="Rhospection.controllers.Report.list();" ><i class="icon-group icon-large icon-primary" id='navsequence'></i> Public Reports</a>
+      		</li>
+      		<li id="menuSync"><a><i class="icon-cloud icon-large icon-primary" id='navcloud'></i> Sync</a></li>
+            <li id="menuLogout"></li>
+          </ul>
+     </div>
+	<div  style="display:none" id="message" class="alert alert-warning">
+	</div>
+	<div class="container" id="content">
+	</div>
+</body>
+
+</html>

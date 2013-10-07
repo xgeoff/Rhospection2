@@ -1,0 +1,9 @@
+rhodes_path='/Users/gporemba/.rvm/gems/ruby-1.9.3-p194/gems/rhodes-4.0.0'
+app_version='1.0'
+app_name='Rhospection2'
+reload_app_changes=0
+debug_port=
+debug_host='127.0.0.1'
+platform='android'
+os_version='2.3.3'
+ext_path=/Users/gporemba/.rvm/gems/ruby-1.9.3-p194/gems/rhodes-4.0.0/lib/commonAPI/coreapi;/Users/gporemba/.rvm/gems/ruby-1.9.3-p194/gems/rhodes-4.0.0/lib/extensions/json;/Users/gporemba/.rvm/gems/ruby-1.9.3-p194/gems/rhoconnect-client-4.0.0/lib/../ext/rhoconnect-client;
