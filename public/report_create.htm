@@ -1,7 +1,35 @@
-<form id="rhospection-report-create" class="form-group" role="form">
-  <!--<div >-->
-    <label for="report-name">Report Name</label>
-    <input type="text" class="form-control" name="report-name" placeholder="Enter report name">
-  <!--</div>-->
+<form id="rhospection-report-create" role="form">
+	<div class="form-group">
+	    <h4>Report Name</h4>
+	    <input type="text" class="form-control" name="name" placeholder="Enter report name">
+	    <h4>Location</h4>
+	    <input type="text" class="form-control" name="location" placeholder="Enter location">
+		<h4>Report Pass?</h4>
+		<div class="radio form-group">
+		  <label>
+		    <input type="radio" name="pass" value="true" checked>
+		    <i class='icon icon-ok-circle icon-success icon-large'></i> Pass
+		  </label>
+		</div>
+		<div class="radio form-group">	
+		  <label>
+		    <input type="radio" name="pass" value="false">
+		    <i class='pull-left icon icon-warning-sign icon-warning icon-large'></i> Fail
+		  </label>
+		</div>
+		<h4>Report Access</h4>	
+		<div class="radio form-group">
+		  <label>
+		    <input type="radio" name="public" value="true" checked>
+		    <i class='icon icon-group'></i> Public
+		  </label>
+		</div>
+		<div class="radio form-group">
+		  <label>
+		    <input type="radio" name="public" value="false">
+		    <i class='icon icon-lock'></i> Private
+		  </label>
+		</div>
+	</div>
 </form>
 <button onClick="Rhospection.controllers.Report.save();" class="btn btn-default">Create</button>

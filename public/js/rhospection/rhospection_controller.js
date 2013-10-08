@@ -112,7 +112,11 @@ Rhospection.controllers.Report = new function() {
 	
 	this.save = function() {
 		var formInfo = $('#rhospection-report-create').serializeArray();
-		alert(formInfo);
+
+		for(var index = 0;index < formInfo.length;index++) {
+			alert(formInfo[index].name);
+			alert(formInfo[index].value);
+		}
 	}
 };
 
