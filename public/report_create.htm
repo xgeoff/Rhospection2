@@ -1,35 +1,22 @@
+
 <form id="rhospection-report-create" role="form">
 	<div class="form-group">
 	    <h4>Report Name</h4>
-	    <input type="text" class="form-control" name="name" placeholder="Enter report name">
+	    <input type="text" class="form-control" name="name" placeholder="Enter report name"></input>
 	    <h4>Location</h4>
-	    <input type="text" class="form-control" name="location" placeholder="Enter location">
-		<h4>Report Pass?</h4>
-		<div class="radio form-group">
-		  <label>
-		    <input type="radio" name="pass" value="true" checked>
-		    <i class='icon icon-ok-circle icon-success icon-large'></i> Pass
-		  </label>
-		</div>
-		<div class="radio form-group">	
-		  <label>
-		    <input type="radio" name="pass" value="false">
-		    <i class='pull-left icon icon-warning-sign icon-warning icon-large'></i> Fail
-		  </label>
-		</div>
+	    <input type="text" class="form-control" name="location" placeholder="Enter location"></input>
+		<h4>Report Status</h4>
+		<input type="radio" name="pass" id="status-pass" value="true" checked></input>
+			<label for="status-pass">Pass</label>
+		<input type="radio" name="pass" id="status-fail" value="false"></input>
+			<label for="status-fail">Fail</label>
 		<h4>Report Access</h4>	
-		<div class="radio form-group">
-		  <label>
-		    <input type="radio" name="public" value="true" checked>
-		    <i class='icon icon-group'></i> Public
-		  </label>
-		</div>
-		<div class="radio form-group">
-		  <label>
-		    <input type="radio" name="public" value="false">
-		    <i class='icon icon-lock'></i> Private
-		  </label>
-		</div>
+		<input type="radio" name="ispublic" id="ispublic-true" value="true" checked></input>
+		    <label for="ispublic-true">Public</label>
+		<input type="radio" name="ispublic" id="ispublic-false" value="false"></input>
+		    <label for="ispublic-false">Private</label>
+	</div>
+	<div class="btn-group">
+		<button onClick="Rhospection.controllers.Report.save();" class="btn btn-primary">Create</button><button onClick="$('.modal').modal('hide');" class="btn btn-default">Cancel</button>
 	</div>
 </form>
-<button onClick="Rhospection.controllers.Report.save();" class="btn btn-default">Create</button>

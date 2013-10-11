@@ -99,24 +99,74 @@ Rhospection.controllers.Report = new function() {
 	        Rhospection.controllers.ReportItems.listCallback,  
 	        "html"  
 		);
-	}
+	};
 	
 	this.show = function(id) {
 		Rhospection.currentId = String(id);
 		Rhospection.contentCall("/public/report_show.htm", this.showCallback);
 	};
+	
+	this.createCallback = function(responseText) {
+		$(".modal-body").html(responseText);
+		$('.modal').modal('show');
+	};
 
 	this.create = function() {
-		Rhospection.contentCall("/public/report_create.htm", null);
-	}
+		$.get(  
+	        "/public/report_create.htm",  
+	        null,  
+	        Rhospection.controllers.Report.createCallback,  
+	        "html"
+		);
+		//Rhospection.contentCall("/public/report_create.htm", null);
+	};
+	
+	this.saveCallback = function() {
+
+		//step 1: create the filter conditions
+		var conditions = {
+			conditions:{reportid:Rhospection.currentId}
+	    };
+	    //step 2: query the db for the report
+		var report = Rhospection.models.Report.find('first', conditions);
+		var heading = $(".panel-heading");
+		//step 3: populate the name and author fields on the form
+		heading.find(".rhospection-report-name").append(report.get("name"));
+		heading.find(".rhospection-report-author").append(report.get("author"));
+		
+		$.get(  
+	        "/public/report_items_show.htm",  
+	        null,  
+	        Rhospection.controllers.ReportItems.show,  
+	        "html"  
+		);
+		
+	};
 	
 	this.save = function() {
+		
 		var formInfo = $('#rhospection-report-create').serializeArray();
-
+		var currentDate = new Date();
+		var report = Rhospection.models.Report.make();
+		
 		for(var index = 0;index < formInfo.length;index++) {
-			alert(formInfo[index].name);
-			alert(formInfo[index].value);
+			report[formInfo[index].name] = formInfo[index].value;
 		}
+		
+		report["author"] = "gporemba";
+		report["date"] = currentDate.getMilliseconds();
+		report.save();
+		report["reportid"] = report.object();
+		report.save();
+		Rhospection.currentId = String(report.object());
+		
+		$.get(  
+	        "/public/report_show.htm",  
+	        null,  
+	        Rhospection.controllers.Report.saveCallback,  
+	        "html"  
+		);
+		
 	}
 };
 
@@ -134,5 +184,32 @@ Rhospection.controllers.ReportItems = new function() {
 			$("#productid").replaceWith(reportItems[index].get("productid"));
 			$("#product-status").replaceWith(reportItems[index].get("status"));
 		}
+	};
+	
+	this.showCallback = function(responseText) {
+		var conditions = {
+			conditions:{reportid:Rhospection.currentId}
+	    };
+
+		var reportItems = Rhospection.models.ReportItem.find('all', conditions);
+		var listGroup = $(".list-group");
+		
+		for(var index = 0; index < reportItems.length; index++) {
+			listGroup.append(responseText);
+			listGroup.find("#product-status").replaceWith(reportItems[index].get("status"));
+			listGroup.find("#product-id").replaceWith(reportItems[index].get("productid"));
+			//listGroup.find("#report-item-id").replaceWith(reportItems[index].object);
+		}
+	};
+	
+	this.show = function() {
+		
+		$.get(  
+	        "/public/reportitem_show.htm",  
+	        null,  
+	        Rhospection.controllers.ReportItems.showCallback,  
+	        "html"  
+		);
+
 	};
 }
