@@ -18,3 +18,4 @@ var Rhospection = new function() {
 	this.listRows = 5;
 	
 };
+alert('rhospection is loaded');

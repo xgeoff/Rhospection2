@@ -122,15 +122,18 @@ Rhospection.controllers.Report = new function() {
 	};
 	
 	this.saveCallback = function() {
-
+		alert('current id is: ' + Rhospection.currentId);
 		//step 1: create the filter conditions
 		var conditions = {
 			conditions:{reportid:Rhospection.currentId}
 	    };
 	    //step 2: query the db for the report
 		var report = Rhospection.models.Report.find('first', conditions);
+		
+		alert('report: ' + String(report));
 		var heading = $(".panel-heading");
 		//step 3: populate the name and author fields on the form
+		alert(" the name is: " + report.get("name"));
 		heading.find(".rhospection-report-name").append(report.get("name"));
 		heading.find(".rhospection-report-author").append(report.get("author"));
 		
@@ -144,19 +147,20 @@ Rhospection.controllers.Report = new function() {
 	};
 	
 	this.save = function() {
-		
+		alert("am i getting here");
 		var formInfo = $('#rhospection-report-create').serializeArray();
 		var currentDate = new Date();
-		var report = Rhospection.models.Report.make();
+		var report = Rhospection.models.Report.create();
 		
 		for(var index = 0;index < formInfo.length;index++) {
-			report[formInfo[index].name] = formInfo[index].value;
+			report.set(formInfo[index].name, formInfo[index].value);
 		}
 		
-		report["author"] = "gporemba";
-		report["date"] = currentDate.getMilliseconds();
+		report.set("author","gporemba");
+		report.set("date", currentDate.getMilliseconds());
+		alert('am about to save');
 		report.save();
-		report["reportid"] = report.object();
+		report.set("reportid",report.object());
 		report.save();
 		Rhospection.currentId = String(report.object());
 		

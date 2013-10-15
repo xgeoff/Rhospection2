@@ -9,7 +9,7 @@ Rhospection.models.Report = Rho.ORM.addModel(function(model) {
 
 function Data_Init() {
 	Rho.ORM.databaseFullReset(true, true);
-
+alert('the data is initialized');
 	var report = Rhospection.models.Report.create(
 	{
 		reportid: '1234',

@@ -1,3 +1,22 @@
+.image-thumb
+{
+  width:64px;
+  height:64px;
+}
+.indicator
+{
+  width:10px;
+  height:64px;
+}
+body
+{ 
+	padding-bottom: 70px; 
+}
+#static-nav
+{
+	padding-left: 10px;
+}
+		
 input[type=radio] {
     display:none;
 }
